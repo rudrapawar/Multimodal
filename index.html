@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Left Behind | Financial Literacy in CT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2e4a;
+      --blue: #2c5f8a;
+      --light-blue: #e8f1f8;
+      --accent: #c0392b;
+      --gray: #f5f5f5;
+      --text: #222;
+      --muted: #666;
+    }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      color: var(--text);
+      background: #fff;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--navy);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    nav .brand {
+      color: #fff;
+      font-family: 'Merriweather', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav ul a {
+      color: #cdd8e3;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: #fff; }
+
+    /* HERO */
+    .hero {
+      background: var(--navy);
+      color: #fff;
+      padding: 4rem 2rem 3.5rem;
+      text-align: center;
+      border-bottom: 4px solid var(--accent);
+    }
+    .hero .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.3;
+      max-width: 750px;
+      margin: 0 auto 1.2rem;
+    }
+    .hero p {
+      color: #b0c4d8;
+      max-width: 620px;
+      margin: 0 auto 1.5rem;
+      font-size: 1rem;
+    }
+    .hero .byline {
+      font-size: 0.85rem;
+      color: #8aaec8;
+      margin-top: 0.5rem;
+    }
+
+    /* MAIN LAYOUT */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    section:last-of-type { border-bottom: none; }
+
+    h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 0.75rem;
+    }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* STAT BOXES */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .stat-box {
+      background: var(--light-blue);
+      border-top: 3px solid var(--blue);
+      padding: 1.2rem 1rem;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .stat-box .number {
+      font-family: 'Merriweather', serif;
+      font-size: 2rem;
+      color: var(--navy);
+      font-weight: 700;
+      display: block;
+    }
+    .stat-box .label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    /* HIGHLIGHT BOX */
+    .highlight {
+      background: var(--light-blue);
+      border-left: 4px solid var(--blue);
+      padding: 1.2rem 1.5rem;
+      border-radius: 0 4px 4px 0;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: var(--navy);
+    }
+
+    /* TIMELINE */
+    .timeline {
+      margin: 1.5rem 0;
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--blue);
+    }
+    .timeline-item {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      left: -1.97rem;
+      top: 6px;
+    }
+    .timeline-item .year {
+      font-weight: 600;
+      color: var(--blue);
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-item p { margin: 0; font-size: 0.95rem; }
+
+    /* Q&A */
+    .qa-item {
+      margin-bottom: 1.5rem;
+      background: var(--gray);
+      border-radius: 6px;
+      padding: 1.2rem 1.5rem;
+    }
+    .qa-item .question {
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    .qa-item .question::before {
+      content: 'Q: ';
+      color: var(--accent);
+    }
+    .qa-item .answer {
+      color: var(--text);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    .qa-item .answer::before {
+      content: 'A: ';
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    /* WHAT YOU CAN DO */
+    .tips {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .tip-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.4rem;
+      background: #fff;
+      cursor: default;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .tip-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .tip-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      border-color: var(--blue);
+      background: var(--light-blue);
+    }
+    .tip-card:hover::after {
+      transform: scaleX(1);
+    }
+    .tip-card .icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+    .tip-card:hover .icon {
+      transform: scale(1.2);
+    }
+    .tip-card h3 {
+      font-size: 1rem;
+      font-family: 'Merriweather', serif;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+    .tip-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* SLIDESHOW */
+    .slideshow-section {
+      margin: 2rem 0;
+    }
+    .slideshow-section h3 {
+      font-family: 'Merriweather', serif;
+      color: var(--navy);
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      padding-left: 0.75rem;
+      border-left: 4px solid var(--accent);
+    }
+    .slideshow {
+      position: relative;
+      background: #111;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .slide {
+      display: none;
+      position: relative;
+    }
+    .slide.active { display: block; }
+    .slide img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+      opacity: 0.88;
+    }
+    .slide-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      color: #fff;
+      padding: 1.5rem 1.2rem 1rem;
+      font-size: 0.88rem;
+      font-style: italic;
+    }
+    .slide-placeholder {
+      width: 100%;
+      height: 420px;
+      background: var(--light-blue);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+      gap: 0.5rem;
+    }
+    .slide-placeholder .ph-icon { font-size: 2.5rem; }
+    .slide-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0.75rem 0 0.25rem;
+    }
+    .slide-btn {
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.4rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .slide-btn:hover { background: var(--blue); }
+    .slide-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .dot.active { background: var(--accent); }
+
+    /* WORKS CITED */
+    .works-cited {
+      background: var(--gray);
+      padding: 2.5rem 0;
+    }
+    .works-cited h2 { margin-bottom: 1rem; }
+    .cite-list {
+      list-style: none;
+      padding: 0;
+    }
+    .cite-list li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      padding-left: 1.5rem;
+      text-indent: -1.5rem;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      color: #8aaec8;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.82rem;
+    }
+
+    /* SCROLL ANIMATION */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="brand">Left Behind</span>
+    <ul>
+      <li><a href="#issue">The Issue</a></li>
+      <li><a href="#ct-law">CT Law</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#closer-look">A Closer Look</a></li>
+      <li><a href="#interview">Interview</a></li>
+      <li><a href="#action">Take Action</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="tag">South Windsor · Connecticut</div>
+    <h1>Left Behind: The Generation Nobody Taught About Money</h1>
+    <p>Connecticut finally made financial literacy mandatory for the Class of 2027 and onward. But what about everyone who came before?</p>
+    <p class="byline">By Rudra Krishnat Pawar &nbsp;|&nbsp; South Windsor High School &nbsp;|&nbsp; 2026</p>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <!-- THE ISSUE -->
+    <section id="issue" class="fade-in">
+      <h2>The Issue</h2>
+      <p>Connecticut has finally made financial literacy mandatory for the Class of 2027 and onward. However, for the generation of South Windsor and Connecticut high school graduates left behind, the damage may already be done. An entire generation is already navigating debt, credit, and financial decisions nobody prepared them for. Connecticut and South Windsor need to step up where the law fell short before.</p>
+      <p>Think about it, a teenager walks across a graduation stage, diploma in hand, ready for adulthood. Within months, they sign up for a credit card, take out a student loan, pay rent for the first time. But nobody ever taught them how money actually works.</p>
+
+      <div class="stats">
+        <div class="stat-box">
+          <span class="number">37%</span>
+          <span class="label">of U.S. adults would struggle to cover a $400 emergency expense with cash</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">#1</span>
+          <span class="label">Connecticut has the highest rate of credit card debt in the nation</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">2027</span>
+          <span class="label">The first CT graduating class required to take financial literacy</span>
+        </div>
+      </div>
+      <div style="text-align:center; margin: 2rem 0;">
+        <img src="1776771370779_image.png" alt="Person losing money to credit card debt" style="max-width:100%; width:420px; border-radius:8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
+        <p style="font-size:0.8rem; color:#888; margin-top:0.5rem; font-style:italic;">The reality for millions of graduates never taught how money works.</p>
+      </div>
+    </section>
+
+    <!-- CT LAW -->
+    <section id="ct-law" class="fade-in">
+      <h2>Connecticut's New Law</h2>
+      <p>In 2023, Connecticut became the 21st state to require a personal finance course for high school graduation. Governor Ned Lamont signed Senate Bill 1165 into law, making a half-credit course in personal financial management mandatory starting with the Class of 2027.</p>
+
+      <div class="highlight">
+        "Personal financial management is one of the most important instructional tools that we can give young people to achieve economic independence and stability throughout their lives." — Governor Ned Lamont
+      </div>
+
+      <p>The course covers banking, investing, savings, credit cards, and budgeting. Notably, South Windsor's own Representative Tom Delnicki was among the local lawmakers who supported this legislation.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="year">2023</div>
+          <p>CT passes Senate Bill 1165. Financial literacy becomes a graduation requirement.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="year">2023–2026</div>
+          <p>Schools begin implementing curriculum. Teachers receive training and resources from the CT Department of Education.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="year">2027</div>
+          <p>First graduating class required to have completed the course. The law takes full effect.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="year">Before 2027</div>
+          <p>Every graduating class before this received no guaranteed financial literacy education, including most current young adults in South Windsor today.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section id="impact" class="fade-in">
+      <h2>The Real Impact of Being Left Behind</h2>
+      <p>Research from economists Annamaria Lusardi and Olivia Mitchell in the Journal of Economic Literature shows that individuals with higher financial literacy are significantly more likely to plan for retirement, avoid high-interest debt, and build wealth over time. Those without it often learn through costly mistakes.</p>
+      <p>The OECD PISA Financial Literacy results show that students from lower-income families consistently score lower in financial literacy, proving that access to financial knowledge is closely tied to opportunity. Without a school requirement, financial education was left to chance; and for many South Windsor graduates, that chance never came.</p>
+
+      <div class="highlight">
+        A single financial mistake such as a missed credit card payment, or an unplanned loan can follow a young person for years. For graduates who never learned the basics, these mistakes are not careless. They are predictable.
+      </div>
+
+      <p>According to a study by Lewis Mandell and Linda Schmid Klein, even students who did take personal finance courses in high school did not always show significant improvement in financial habits. This tells us that the quality and consistency of financial education matters just as much as its existence something South Windsor must keep in mind as it implements the new requirement.</p>
+    </section>
+
+
+    <!-- SLIDESHOW -->
+    <section id="closer-look" class="fade-in">
+      <div class="slideshow-section">
+        <h3>A Closer Look</h3>
+        <p style="font-size:0.9rem; color:var(--muted); margin-bottom:1rem;">Photos highlighting the real-world impact of financial illiteracy on young adults in Connecticut.</p>
+        <div class="slideshow" id="slideshow">
+          <!-- SLIDE 1 -->
+          <div class="slide active">
+            <img src="HUG.png">
+            <div class="slide-caption">South Windsor's own Rep. Tom Delnicki helped push the law that future students will benefit from, but what about the graduates who came before it?</div>
+          </div>
+          <!-- SLIDE 2 -->
+          <div class="slide">
+            <img src="superhero.png">
+            <div class="slide-caption">Knowing how to manage your money should not feel like a superpower but for the generation nobody taught, it does.</div>
+          </div>
+          <!-- SLIDE 3 -->
+          <div class="slide">
+            <img src="map.png">
+            <div class="slide-caption">More than half of U.S. states still do not guarantee personal finance education for high school students. For Connecticut graduates before the Class of 2027, this map shows exactly why they were left behind.</div>
+          </div>
+        </div>
+        <div class="slide-controls">
+          <button class="slide-btn" onclick="changeSlide(-1)">&#8592; Prev</button>
+          <div class="slide-dots" id="dots"></div>
+          <button class="slide-btn" onclick="changeSlide(1)">Next &#8594;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERVIEW -->
+    <section id="interview" class="fade-in">
+      <h2>Community Voice: Aarush Singh Intern at Webster Bank Q&A</h2>
+      <p>To understand how this issue plays out locally, I reached out to a Junior at Northeastern who is a financial intern at Webster Bank in southington. Below is a summary of our conversation.</p>
+
+      <div class="qa-item">
+        <div class="question">In your experience here at southington, how financially prepared are young adults usually when they first come to you?</div>
+        <p class="answer">In my experience, most young adults who come in know the basics like having a checking account, but when it comes to things like credit scores, interest rates, or even just budgeting, there is a real gap. A lot of them are learning these things for the first time when they are already in a situation where it matters, which is not ideal.</p>
+      </div>
+      <div class="qa-item">
+        <div class="question">What are the most common financial mistakes you see young people in this area make?</div>
+        <p class="answer">Honestly, the biggest thing I see is young people not understanding how credit card interest works, they'll swipe for everything and then only pay the minimum, not realizing how fast that balance grows. The other one is just not having any savings at all, like even a small emergency completely throws them off financially.</p>
+      </div>
+      <div class="qa-item">
+        <div class="question">What do you think should be done to help the people who have already graduated without financial literacy?</div>
+        <p class="answer">"I think the biggest thing is making free financial resources more accessible and actually advertising them, because most people do not even know they exist. Banks, libraries, and community centers should be doing more outreach to young adults who missed out on this education, whether that is free workshops, one on one consultations, or even just online resources that are easy to find.</p>
+      </div>
+      <div class="qa-item">
+        <div class="question">How does the lack of financial literacy affect people you may have worked with or seen?</div>
+        <p class="answer">I have seen people come in stressed and confused about why their credit score dropped or why they owe so much more than they originally borrowed, and it is clear they just never had anyone explain how these things work. It puts people in really tough spots that could have been avoided with just some basic knowledge upfront.</p>
+      </div>
+      <div class="qa-item">
+        <div class="question">Do you think one semester of financial literacy in high school is enough?</div>
+        <p class="answer">One semester is definitely a good start and better than nothing, but I do not think it is enough to fully prepare someone for everything they will face financially as an adult. There is so much to cover between credit, taxes, investing, and budgeting that one semester really only scratches the surface.</p>
+      </div>
+      <div class="qa-item">
+        <div class="question">What one concept do you wish every graduating senior already understood about financial literacy?</div>
+        <p class="answer">Compound interest is the one thing I wish every graduating senior understood, because it works both for you and against you. If you are saving and investing early it builds your wealth over time, but if you are carrying credit card debt it is exactly why that balance never seems to go down no matter how much you pay.</p>
+      </div>
+      <div class="qa-item">
+        <div class="question">Were you aware that Connecticut now requires financial literacy for graduation, starting with the class of 2027?
+          If so or not, what is your reaction to this?</div>
+        <p class="answer">I was not fully aware of all the details around it, but hearing that makes me really happy because it is honestly long overdue. I just hope the courses are taught in a way that is actually engaging and practical, because there is a big difference between sitting through a class and actually walking away knowing how to manage your money.</p>
+      </div>
+    </section>
+
+    <!-- TAKE ACTION -->
+    <section id="action" class="fade-in">
+      <h2>What You Can Do Right Now</h2>
+      <p>Whether you're a student, a recent graduate, or a parent it is never too late to start learning. Here are some practical first steps.</p>
+
+      <div class="tips">
+        <div class="tip-card">
+          <div class="icon">💳</div>
+          <h3>Understand Credit</h3>
+          <p>Learn what a credit score is, how it's affected, and why it matters for renting, buying a car, or getting a loan.</p>
+        </div>
+        <div class="tip-card">
+          <div class="icon">🏦</div>
+          <h3>Open a Savings Account</h3>
+          <p>Start building an emergency fund. Even saving $20 a week adds up to over $1,000 in a year. You can also open a high-yield savings account rather than letting your money stay in a checking account.</p>
+        </div>
+        <div class="tip-card">
+          <div class="icon">📊</div>
+          <h3>Make a Budget</h3>
+          <p>Track what comes in and what goes out. Free tools like Mint or a simple spreadsheet can help you see where your money goes.</p>
+        </div>
+        <div class="tip-card">
+          <div class="icon">📚</div>
+          <h3>Keep Learning</h3>
+          <p>Resources like Khan Academy, Next Gen Personal Finance, Youtube, and local library programs offer free financial education for all ages.</p>
+        </div>
+        <div class="tip-card">
+          <div class="icon">📉</div>
+          <h3>Avoid Lifestyle Inflation</h3>
+          <p>When you start earning more, it's tempting to spend more. Learning to keep your expenses steady as your income grows is important for avoiding unnecessary debt and growing your wealth over time.</p>
+        </div>
+        <div class="tip-card">
+          <div class="icon">📲</div>
+          <h3>Use a Money App</h3>
+          <p>Free apps like YNAB or your bank's app can show you exactly where your money goes every month, which can help change your habits. Tracking spending and savings every month can help you be aware of your own financial situation. </p>
+        </div>
+      </div>
+      <div style="margin-top: 2rem;">
+        <h3 style="font-family: 'Merriweather', serif; color: var(--navy); font-size: 1.1rem; margin-bottom: 0.75rem; padding-left: 0.75rem; border-left: 4px solid var(--accent);">Watch & Learn</h3>
+        <p style="font-size: 0.95rem; color: var(--muted); margin-bottom: 1rem;">This TEDx Talk by Sirisha Kuchimanchi is one of the sources referenced in this project that breaks down how to make financial literacy approachable, especially for younger generations. So for the adults viewing this website, looking to teach your kids financial literacy, this might be a good source to refrence too.</p>
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);">
+          <iframe
+            src="https://www.youtube.com/embed/2v7xTtdMLAQ"
+            title="Teaching your kids financial literacy? Make it fun. | Sirisha Kuchimanchi | TEDxCapeMay"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+          </iframe>
+        </div>
+        <p style="font-size: 0.78rem; color: #aaa; margin-top: 0.5rem; font-style: italic; text-align:center;">Kuchimanchi, Sirisha. "Teaching your kids financial literacy? Make it fun." TEDxCapeMay, 23 Apr. 2024.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- WORKS CITED -->
+  <div class="works-cited">
+    <div class="container">
+      <section>
+        <h2>Works Cited</h2>
+        <ul class="cite-list">
+          <li>"Survey of Household Economics and Decisionmaking (SHED) Data Visualization." <em>Federal Reserve</em>, 23 May 2024, www.federalreserve.gov/consumerscommunities/sheddataviz.htm. Accessed 17 Feb. 2026. Map.</li>
+          <li>"CT Adopts Financial Literacy Requirement for High School Graduates." <em>CT Mirror</em>, 30 May 2023, ctmirror.org/2023/05/30/ct-financial-literacy-class-graduation-requirement-students/. Accessed 5 Apr. 2026.</li>
+          <li>Journal of Economic Literature. American Economic Association, https://doi.org/10.1257/jel.52.1.5. Accessed 17 Feb. 2026.</li>
+          <li>Mandell, Lewis, and Linda Schmid Klein. "The Impact of Financial Literacy Education on Subsequent Financial Behavior." <em>AFCPE</em>, 2009, www.afcpe.org/news-and-publications/journal-of-financial-counseling-and-planning/volume-20-1/the-impact-of-financial-literacy-education-on-subsequent-financial-behavior/. Accessed 17 Feb. 2026.</li>
+          <li>"PISA 2022 Results (Volume I): The State of Learning and Equity in Education." <em>OECD</em>, 5 Dec. 2023, www.oecd.org/en/publications/pisa-2022-results-volume-i_53f23881-en.html. Accessed 17 Feb. 2026.</li>
+          <li>"2026 Credit Card Debt Statistics." <em>LendingTree</em>, 2026, www.lendingtree.com/credit-cards/study/credit-card-debt-statistics/. Accessed 20 Apr. 2026.</li>
+          <li>"How Do I Pay Off My High Interest Credit Card Debt?" <em>In Charge Debt Solution</em>, 4 Mar. 2026, www.incharge.org/blog/pay-off-high-interest-credit-card-debt/. Accessed 21 Apr. 2026.</li>
+          <li>Admin, BJournal. "17 states guarantee a Personal Finance course for all public high school students." <em>The Business Journal</em>, 14 Jan. 2024, bjournal.com/tennessee-sets-standard-for-financial-education-in-schools/. Accessed 26 Apr. 2026. Infographic.</li>
+          <li>Morris, George. "Using Comic Books To Teach Financial Literacy." <em>InCharge Debt Solutions</em>, 6 Dec. 2021, www.incharge.org/financial-literacy/resources-for-teachers/using-comic-books-to-teach-about-money/. Accessed 26 Apr. 2026.</li>
+          <li>Phillips, Erica E. Rep. Corey Paris, D-Stamford, and Rep. Tom Delnicki, R-South Windsor, shared a friendly embrace at a press conference announcing a proposal to require financial literacy education for Connecticut high school students. 30 May 2023. <em>CT Mirror</em>, ctmirror.org/2023/05/30/ct-financial-literacy-class-graduation-requirement-students/. Accessed 26 Apr. 2026.</li>
+          <li>Singh, Aarush. Personal interview. 14 Apr. 2026.</li>
+          <li>Kuchimanchi, Sirisha. "Teaching your kids financial literacy? Make it fun." 23 Apr. 2024. Speech.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Created by Rudra Krishnat Pawar &nbsp;|&nbsp; South Windsor High School &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Multimedia Thesis Project</p>
+  </footer>
+
+  <script>
+
+    // SLIDESHOW
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('dots');
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    });
+
+    function goToSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      document.querySelectorAll('.dot')[currentSlide].classList.remove('active');
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      document.querySelectorAll('.dot')[currentSlide].classList.add('active');
+    }
+
+    function changeSlide(dir) { goToSlide(currentSlide + dir); }
+
+    // Auto-advance every 5 seconds
+    setInterval(() => changeSlide(1), 5000);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
